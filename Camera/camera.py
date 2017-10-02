@@ -21,7 +21,7 @@ import numpy as np
 import easyiceconfig as EasyIce
 from PIL import Image
 from jderobot import CameraPrx
-#from keras.models import load_model
+from keras.models import load_model
 from keras import backend
 
 
@@ -32,9 +32,9 @@ class Camera:
         in order to predict the digit in the image.
         '''
 	print "\nLoading Keras model..."
-        '''self.model = load_model("/home/nacho/" + 
+        self.model = load_model("/home/nacho/" + 
                                 "2016-tfg-david-pascual/Net/Example/" +
-                                "MNIST_net.h5")'''
+                                "MNIST_net.h5")
         print "loaded\n"
         status = 0
         ic = None
