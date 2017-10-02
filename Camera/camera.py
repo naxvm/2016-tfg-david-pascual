@@ -21,7 +21,7 @@ import numpy as np
 import easyiceconfig as EasyIce
 from PIL import Image
 from jderobot import CameraPrx
-from keras.models import load_model
+#from keras.models import load_model
 from keras import backend
 
 
@@ -32,24 +32,25 @@ class Camera:
         in order to predict the digit in the image.
         '''
 	print "\nLoading Keras model..."
-        self.model = load_model("/home/dpascualhe/workspace/" + 
-                                "2016-tfg-david-pascual/Net/Nets/0-1_tuned/" +
-                                "net_4conv_patience5.h5")
+        '''self.model = load_model("/home/nacho/" + 
+                                "2016-tfg-david-pascual/Net/Example/" +
+                                "MNIST_net.h5")'''
         print "loaded\n"
         status = 0
         ic = None
         
         # Initializing the Ice run-time.
         ic = EasyIce.initialize(sys.argv)
-
         properties = ic.getProperties()
         self.lock = threading.Lock()
     
         try:
             # We obtain a proxy for the camera.
-            obj = ic.propertyToProxy("Digitclassifier.Camera.Proxy")
+            #obj = ic.propertyToProxy("Digitclassifier.Camera.Proxy")
+	    obj = ic.stringToProxy('cameraA:default -h localhost -p 9999')
             # We get the first image and print its description.
             self.cam = CameraPrx.checkedCast(obj)
+
             if self.cam:
                 self.im = self.cam.getImageData("RGB8")
                 self.im_height = self.im.description.height

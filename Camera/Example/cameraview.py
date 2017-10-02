@@ -49,6 +49,7 @@ class Cameraview:
                 
         status = 0
         ic = None
+        print "hi"
     
         try:        
             # Initializing the Ice run time
@@ -61,6 +62,8 @@ class Cameraview:
             data = cam.getImageData("RGB8")
             if cam:
                 print(data.description)
+            else:
+                print "no cam"
             
             # We define the windows that we're going to employ
             cv2.namedWindow("Live video")
